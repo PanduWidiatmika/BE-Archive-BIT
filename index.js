@@ -10,6 +10,7 @@ const cors = require("cors");
 //Server dependencies
 const app = express()
 const port = 8082
+const host = "0.0.0.0"
 
 //Express dependencies
 app.use(cors(), express.json({ limit: "200mb" }), express.urlencoded({ limit: "200mb", extended: true }));
@@ -93,7 +94,7 @@ io.on("connection", (socket) => {
 
 // Building server
 http.createServer(app)
-  .listen(port, function (err) {
+  .listen({ port, host }, function (err) {
     if (err) {
       console.log(err)
       process.exit(1)
